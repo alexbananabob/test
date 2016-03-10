@@ -1,12 +1,15 @@
 var gulp = require('gulp'),
     deploy = require('gulp-gh-pages'),
+    dateNow = new Date(),
+    date = "Build "  + dateNow.getDate() + "/" + dateNow.getMonth() + "/" + dateNow.getFullYear() + " at " + dateNow.getHours() + ":" + dateNow.getMinutes(),
     deployOptions = {
 	remoteUrl: "https://github.com/alexbananabob/test.git",
 	origin: "origin",
 	branch: "gh-pages",
 	cacheDir: ".publish",
 	push: "true",
-	forse: "true"
+	forse: "true",
+	message: date
     };
 
 var onError = function (err) {
