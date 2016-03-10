@@ -1,5 +1,13 @@
 var gulp = require('gulp'),
-    deploy = require('gulp-gh-pages');
+    deploy = require('gulp-gh-pages'),
+    deployOptions = {
+	remoteUrl: "https://github.com/alexbananabob/test.git",
+	origin: "origin",
+	branch: "gh-pages",
+	cacheDir: ".publish",
+	push: "true",
+	forse: "true"
+    };
 
 var onError = function (err) {
     console.log('An error occurred:', err.message);
@@ -7,15 +15,11 @@ var onError = function (err) {
 };
 
 gulp.task('default', function () {
-    gulp.src('src/images/**/*')
+    return gulp.src('src/images/**/*')
         .pipe(gulp.dest('dist/images'));
-    gulp.src('src/**/*.html')
-        .pipe(gulp.dest('dist/'))
-        .pipe(inject(gulp.src(['dist/js/**/*.js', 'dist/css/lib/*.css', 'dist/css/*.css'], {read: false}), {relative: true}))
-        .pipe(gulp.dest('dist/'));
 });
 
-gulp.task('deploy', function () {
+gulp.task('deploy', ['default'], function () {
     return gulp.src("./dist/**/*")
-        .pipe(deploy())
+        .pipe(deploy(deployOptions))
 });
