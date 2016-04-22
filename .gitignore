@@ -1,12 +1,15 @@
-.git
+node_modules
 
 .publish
 
+.idea
+
+.git
+
 dist
 
-node_modules
+images
 
 gulpfile.js
 
 package.json
-
